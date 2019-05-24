@@ -34,14 +34,14 @@ public class TestBook {
                 break;
             case 2:
                 System.out.println("請輸入Book id:");
-                System.out.println(dao.get(scanner.nextInt()));
+                System.out.println(dao.get(Book.class, scanner.nextInt()));
                 break;
             case 3:
-                System.out.println(dao.queryAll());
+                System.out.println(dao.queryAll(Book.class));
                 break;
             case 4:
                 System.out.println("請輸入Book id:");
-                Book update_book = dao.get(scanner.nextInt());
+                Book update_book = (Book)dao.get(Book.class, scanner.nextInt());
                 System.out.println(update_book);
                 System.out.println("請輸入書名:");
                 update_book.setName(scanner.next());
@@ -51,11 +51,11 @@ public class TestBook {
                 break;
             case 5:
                 System.out.println("請輸入Book id:");
-                Book delete_book = dao.get(scanner.nextInt());
+                Book delete_book = (Book)dao.get(Book.class, scanner.nextInt());
                 System.out.println(delete_book);
                 System.out.println("是否要刪除(y/n) ?");
                 if(scanner.next().equalsIgnoreCase("y")) {
-                    System.out.println("刪除 : " + dao.delete(delete_book.getId()));
+                    System.out.println("刪除 : " + dao.delete(Book.class, delete_book.getId()));
                 }
                 break;    
             default:

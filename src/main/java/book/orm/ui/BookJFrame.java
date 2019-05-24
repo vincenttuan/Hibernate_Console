@@ -179,10 +179,11 @@ public class BookJFrame extends javax.swing.JFrame {
     private void read_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_read_btnActionPerformed
         DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
         dm.setNumRows(0);
-        Set<Book> books = dao.queryAll();
-        for(Book b : books) {
+        Set books = dao.queryAll(Book.class);
+        for(Object obj : books) {
+            Book book = (Book)obj;
             Object[] rowData = {
-                b.getId(), b.getName(), b.getPrice()
+                book.getId(), book.getName(), book.getPrice()
             };
             dm.addRow(rowData);
         }
@@ -203,7 +204,7 @@ public class BookJFrame extends javax.swing.JFrame {
             int col = 0;
             DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
             int id = Integer.parseInt(dm.getValueAt(row, col)+"");
-            Book book = dao.get(id);
+            Book book = (Book)dao.get(Book.class, id);
             input_id.setText(book.getId() + "");
             input_name.setText(book.getName());
             input_price.setText(book.getPrice()+ "");
@@ -212,7 +213,7 @@ public class BookJFrame extends javax.swing.JFrame {
 
     private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
         int id = Integer.parseInt(input_id.getText());
-        Book book = dao.get(id);
+        Book book = (Book)dao.get(Book.class, id);
         book.setName(input_name.getText());
         book.setPrice(Integer.parseInt(input_price.getText()));
         dao.update(book);
@@ -224,7 +225,7 @@ public class BookJFrame extends javax.swing.JFrame {
             int col = 0;
             DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
             int id = Integer.parseInt(dm.getValueAt(row, col)+"");
-            dao.delete(id);
+            dao.delete(Book.class, id);
         }
         read_btnActionPerformed(evt);
     }//GEN-LAST:event_delete_btnActionPerformed
