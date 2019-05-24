@@ -1,8 +1,8 @@
-package orm.test;
+package book.orm.test;
 
 import java.util.Scanner;
-import orm.dao.BookDAOImpl;
-import orm.model.Book;
+import book.orm.dao.BookDAOImpl;
+import book.orm.model.Book;
 
 public class TestBook {
     

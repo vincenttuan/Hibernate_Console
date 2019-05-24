@@ -1,7 +1,7 @@
-package orm.dao;
+package book.orm.dao;
 
 import java.util.Set;
-import orm.model.Book;
+import book.orm.model.Book;
 
 public interface IBookDAO {
     void test();

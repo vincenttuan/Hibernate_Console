@@ -1,4 +1,4 @@
-package orm.dao;
+package book.orm.dao;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import orm.model.Book;
+import book.orm.model.Book;
 
 public class BookDAOImpl implements IBookDAO {
 

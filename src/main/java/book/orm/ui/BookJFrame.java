@@ -1,9 +1,10 @@
-package orm.ui;
+package book.orm.ui;
 
+import orm.ui.*;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
-import orm.dao.BookDAOImpl;
-import orm.model.Book;
+import book.orm.dao.BookDAOImpl;
+import book.orm.model.Book;
 
 public class BookJFrame extends javax.swing.JFrame {
 
@@ -260,6 +261,7 @@ public class BookJFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

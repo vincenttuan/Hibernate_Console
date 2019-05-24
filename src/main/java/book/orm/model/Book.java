@@ -1,4 +1,4 @@
-package orm.model;
+package book.orm.model;
 
 public class Book {
     
