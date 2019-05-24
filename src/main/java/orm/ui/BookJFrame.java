@@ -73,9 +73,19 @@ public class BookJFrame extends javax.swing.JFrame {
 
         update_btn.setFont(new java.awt.Font("微軟正黑體", 0, 18)); // NOI18N
         update_btn.setText("Update");
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_btnActionPerformed(evt);
+            }
+        });
 
         delete_btn.setFont(new java.awt.Font("微軟正黑體", 0, 18)); // NOI18N
         delete_btn.setText("Delete");
+        delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_btnActionPerformed(evt);
+            }
+        });
 
         jTable1.setFont(new java.awt.Font("微軟正黑體", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,6 +107,11 @@ public class BookJFrame extends javax.swing.JFrame {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -181,7 +196,7 @@ public class BookJFrame extends javax.swing.JFrame {
         dao.create(book);
         read_btnActionPerformed(evt);
     }//GEN-LAST:event_create_btnActionPerformed
-
+    
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if(evt.getClickCount() == 2) {
             int row = jTable1.getSelectedRow();
@@ -195,6 +210,31 @@ public class BookJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
+        int id = Integer.parseInt(input_id.getText());
+        Book book = dao.get(id);
+        book.setName(input_name.getText());
+        book.setPrice(Integer.parseInt(input_price.getText()));
+        dao.update(book);
+        read_btnActionPerformed(evt);
+    }//GEN-LAST:event_update_btnActionPerformed
+
+    private void delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_btnActionPerformed
+        for(int row : jTable1.getSelectedRows()) {
+            int col = 0;
+            DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
+            int id = Integer.parseInt(dm.getValueAt(row, col)+"");
+            dao.delete(id);
+        }
+        read_btnActionPerformed(evt);
+    }//GEN-LAST:event_delete_btnActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        if(evt.getKeyCode() == 127) {
+            delete_btnActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
+    
     /**
      * @param args the command line arguments
      */
