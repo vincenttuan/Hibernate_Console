@@ -1,6 +1,5 @@
 package book.orm.ui;
 
-import orm.ui.*;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 import book.orm.dao.BookDAOImpl;
