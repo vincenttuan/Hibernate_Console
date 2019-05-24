@@ -85,7 +85,20 @@ public class BookJFrame extends javax.swing.JFrame {
             new String [] {
                 "id", "name", "price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,6 +181,19 @@ public class BookJFrame extends javax.swing.JFrame {
         dao.create(book);
         read_btnActionPerformed(evt);
     }//GEN-LAST:event_create_btnActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if(evt.getClickCount() == 2) {
+            int row = jTable1.getSelectedRow();
+            int col = 0;
+            DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
+            int id = Integer.parseInt(dm.getValueAt(row, col)+"");
+            Book book = dao.get(id);
+            input_id.setText(book.getId() + "");
+            input_name.setText(book.getName());
+            input_price.setText(book.getPrice()+ "");
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -4,7 +4,7 @@ import java.util.Scanner;
 import orm.dao.BookDAOImpl;
 import orm.model.Book;
 
-public class Test {
+public class TestBook {
     
     public static void main(String[] args) {
         menu();
