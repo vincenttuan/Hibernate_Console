@@ -66,7 +66,7 @@ public class BookDAOImpl implements IBookDAO {
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.getCurrentSession();
         Transaction tx = session.beginTransaction();
-        List list = session.createQuery("from orm.model.Book").list();
+        List list = session.createQuery("from book.orm.model.Book").list();
         tx.commit();
         return new LinkedHashSet<>(list);
     }

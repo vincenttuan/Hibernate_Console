@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="orm.model.Book" table="book">
-        <id name="id" type="int" column="b_id">
-            <generator class="native"/>
-        </id>
-        <property name="name" column="b_name" type="string"/>
-        <property name="price" column="b_price" type="int"/>
-    </class>
+  <class name="book.orm.model.Book" table="book">
+    <id column="b_id" name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="b_name" name="name" type="string"/>
+    <property column="b_price" name="price" type="int"/>
+  </class>
 </hibernate-mapping>
