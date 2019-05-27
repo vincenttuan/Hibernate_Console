@@ -10,9 +10,11 @@ import book.orm.dao.BookDAOImpl;
 import book.orm.dao.IBookCategoryDAO;
 import book.orm.dao.IBookDAO;
 import book.orm.model.Book;
+import book.orm.model.BookCategory;
 import book.orm.model.Category;
 import java.util.Set;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,7 +74,8 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel1.setText("Book");
 
-        combo_book.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        combo_book.setEditable(true);
+        combo_book.setFont(new java.awt.Font("Consolas", 0, 16)); // NOI18N
         combo_book.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_bookItemStateChanged(evt);
@@ -82,7 +85,7 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel2.setText("selected");
 
-        list_category_sel.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        list_category_sel.setFont(new java.awt.Font("Consolas", 0, 16)); // NOI18N
         list_category_sel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 list_category_selMouseClicked(evt);
@@ -102,7 +105,7 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("新細明體", 1, 18)); // NOI18N
         jButton4.setText(">>");
 
-        list_category_notin.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        list_category_notin.setFont(new java.awt.Font("Consolas", 0, 16)); // NOI18N
         list_category_notin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 list_category_notinMouseClicked(evt);
@@ -112,6 +115,11 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jButton5.setText("Mapper-Update");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel3.setText("none-select");
@@ -174,9 +182,9 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
                         .addComponent(jButton4))
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +222,17 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
             listModel_notin.addElement(category);
         }
     }//GEN-LAST:event_list_category_selMouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int size = listModel_sel.getSize();
+        int b_id = ((Book)combo_book.getSelectedItem()).getId();
+        for(int i=0;i<size;i++) {
+            int c_id = listModel_sel.getElementAt(i).getId();
+            BookCategory bc = new BookCategory(c_id, b_id);
+            bcDao.create(bc);
+        }
+        JOptionPane.showMessageDialog(rootPane, "Update OK !");
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
