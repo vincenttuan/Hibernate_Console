@@ -5,9 +5,12 @@
  */
 package book.orm.ui;
 
+import book.orm.dao.BookCategoryDAOImpl;
 import book.orm.dao.BookDAOImpl;
 import book.orm.model.Book;
+import book.orm.model.Category;
 import java.util.Set;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -16,6 +19,8 @@ import java.util.Set;
 public class BookCategoryJFrame extends javax.swing.JFrame {
     
     private BookDAOImpl bookDao = new BookDAOImpl();
+    private BookCategoryDAOImpl bcDao = new BookCategoryDAOImpl();
+    private DefaultListModel<Category> listModel_notin, listModel_sel;
     
     public BookCategoryJFrame() {
         initComponents();
@@ -42,13 +47,13 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         combo_book = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_category_sel = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        list_category_notin = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -63,8 +68,8 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel2.setText("selected");
 
-        jList1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        list_category_sel.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        jScrollPane1.setViewportView(list_category_sel);
 
         jButton1.setFont(new java.awt.Font("新細明體", 1, 18)); // NOI18N
         jButton1.setText("<");
@@ -78,8 +83,8 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("新細明體", 1, 18)); // NOI18N
         jButton4.setText(">>");
 
-        jList2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        list_category_notin.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        jScrollPane2.setViewportView(list_category_notin);
 
         jButton5.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jButton5.setText("Mapper-Update");
@@ -198,9 +203,9 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<Category> list_category_notin;
+    private javax.swing.JList<Category> list_category_sel;
     // End of variables declaration//GEN-END:variables
 }
