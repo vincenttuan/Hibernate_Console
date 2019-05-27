@@ -1,7 +1,7 @@
 package book.orm.model;
 
 public class BookCategory {
-    private int bc_id;
+    private int id;
     private int b_id;
     private int c_id;
 
@@ -13,12 +13,12 @@ public class BookCategory {
         this.c_id = c_id;
     }
 
-    public int getBc_id() {
-        return bc_id;
+    public int getId() {
+        return id;
     }
 
-    public void setBc_id(int bc_id) {
-        this.bc_id = bc_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getB_id() {
@@ -36,5 +36,6 @@ public class BookCategory {
     public void setC_id(int c_id) {
         this.c_id = c_id;
     }
+
     
 }

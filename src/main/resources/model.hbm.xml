@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="book.orm.model.Book" table="book">
-    <id column="b_id" name="id" type="int">
-      <generator class="native"/>
-    </id>
-    <property column="b_name" name="name" type="string"/>
-    <property column="b_price" name="price" type="int"/>
-  </class>
-  <class name="book.orm.model.Category" table="category">
-    <id column="c_id" name="id" type="int">
-      <generator class="native"/>
-    </id>
-    <property column="c_name" name="name" type="string"/>
-  </class>
+    <class name="book.orm.model.Book" table="book">
+        <id column="b_id" name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property column="b_name" name="name" type="string"/>
+        <property column="b_price" name="price" type="int"/>
+    </class>
+    <class name="book.orm.model.Category" table="category">
+        <id column="c_id" name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property column="c_name" name="name" type="string"/>
+    </class>
+    <class name="book.orm.model.BookCategory" table="book_category">
+        <id column="bc_id" name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property column="c_id" name="c_id" type="int"/>
+        <property column="b_id" name="b_id" type="int"/>
+    </class>
 </hibernate-mapping>
