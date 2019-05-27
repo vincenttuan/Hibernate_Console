@@ -5,21 +5,30 @@
  */
 package book.orm.ui;
 
+import book.orm.dao.BookDAOImpl;
 import book.orm.model.Book;
+import java.util.Set;
 
 /**
  *
  * @author student
  */
 public class BookCategoryJFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form BookCategoryJFrame
-     */
+    
+    private BookDAOImpl bookDao = new BookDAOImpl();
+    
     public BookCategoryJFrame() {
         initComponents();
+        init();
     }
-
+    
+    private void init() {
+        Set books = bookDao.queryAll(Book.class);
+        for(Object book : books) {
+            combo_book.addItem((Book)book);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
