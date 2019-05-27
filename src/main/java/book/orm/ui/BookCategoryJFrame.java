@@ -73,11 +73,21 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jLabel1.setText("Book");
 
         combo_book.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        combo_book.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_bookItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel2.setText("selected");
 
         list_category_sel.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        list_category_sel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_category_selMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(list_category_sel);
 
         jButton1.setFont(new java.awt.Font("新細明體", 1, 18)); // NOI18N
@@ -93,6 +103,11 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
         jButton4.setText(">>");
 
         list_category_notin.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        list_category_notin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_category_notinMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(list_category_notin);
 
         jButton5.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
@@ -166,6 +181,39 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void combo_bookItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_bookItemStateChanged
+        int b_id = ((Book)combo_book.getSelectedItem()).getId();
+        listModel_notin.removeAllElements();
+        listModel_sel.removeAllElements();
+        
+        Set<Category> list_notin = bcDao.queryCategoryByBookIdNotIn(b_id);
+        for(Category category : list_notin) {
+            listModel_notin.addElement(category);
+        }
+        
+        Set<Category> list_sel = bcDao.queryCategoryByBookId(b_id);
+        for(Category category : list_sel) {
+            listModel_sel.addElement(category);
+        }
+        
+    }//GEN-LAST:event_combo_bookItemStateChanged
+
+    private void list_category_notinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_category_notinMouseClicked
+        if(evt.getClickCount() == 2) {
+            Category category = list_category_notin.getSelectedValue();
+            listModel_sel.addElement(category);
+            listModel_notin.removeElement(category);
+        }
+    }//GEN-LAST:event_list_category_notinMouseClicked
+
+    private void list_category_selMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_category_selMouseClicked
+        if(evt.getClickCount() == 2) {
+            Category category = list_category_sel.getSelectedValue();
+            listModel_sel.removeElement(category);
+            listModel_notin.addElement(category);
+        }
+    }//GEN-LAST:event_list_category_selMouseClicked
 
     /**
      * @param args the command line arguments
