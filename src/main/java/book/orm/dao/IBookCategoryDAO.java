@@ -6,4 +6,5 @@ import java.util.Set;
 public interface IBookCategoryDAO extends IBaseDAO {
     Set<Category> queryCategoryByBookId(int b_id);
     Set<Category> queryCategoryByBookIdNotIn(int b_id);
+    boolean deleteByBookId(int b_id);
 }

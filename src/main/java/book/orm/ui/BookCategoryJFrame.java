@@ -226,9 +226,10 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int size = listModel_sel.getSize();
         int b_id = ((Book)combo_book.getSelectedItem()).getId();
+        bcDao.deleteByBookId(b_id);
         for(int i=0;i<size;i++) {
             int c_id = listModel_sel.getElementAt(i).getId();
-            BookCategory bc = new BookCategory(c_id, b_id);
+            BookCategory bc = new BookCategory(b_id, c_id);
             bcDao.create(bc);
         }
         JOptionPane.showMessageDialog(rootPane, "Update OK !");

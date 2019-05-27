@@ -44,4 +44,17 @@ public class BookCategoryDAOImpl extends BaseDAOImpl implements IBookCategoryDAO
         return new LinkedHashSet<>(list);
     }
     
+    @Override
+    public boolean deleteByBookId(int b_id) {
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        String sql = "delete from book.orm.model.BookCategory where b_id =:b_id";
+        Query query = session.createQuery(sql);
+        query.setParameter("b_id", b_id);
+        query.executeUpdate();
+        tx.commit();
+        return true;
+    }
 }
