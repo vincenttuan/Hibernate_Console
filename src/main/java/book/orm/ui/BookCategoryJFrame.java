@@ -7,6 +7,8 @@ package book.orm.ui;
 
 import book.orm.dao.BookCategoryDAOImpl;
 import book.orm.dao.BookDAOImpl;
+import book.orm.dao.IBookCategoryDAO;
+import book.orm.dao.IBookDAO;
 import book.orm.model.Book;
 import book.orm.model.Category;
 import java.util.Set;
@@ -18,8 +20,8 @@ import javax.swing.DefaultListModel;
  */
 public class BookCategoryJFrame extends javax.swing.JFrame {
     
-    private BookDAOImpl bookDao = new BookDAOImpl();
-    private BookCategoryDAOImpl bcDao = new BookCategoryDAOImpl();
+    private IBookDAO bookDao = new BookDAOImpl();
+    private IBookCategoryDAO bcDao = new BookCategoryDAOImpl();
     private DefaultListModel<Category> listModel_notin, listModel_sel;
     
     public BookCategoryJFrame() {
@@ -28,6 +30,13 @@ public class BookCategoryJFrame extends javax.swing.JFrame {
     }
     
     private void init() {
+        // 初始 "list"
+        list_category_notin.setModel(new DefaultListModel());
+        list_category_sel.setModel(new DefaultListModel());
+        listModel_notin = (DefaultListModel)list_category_notin.getModel();
+        listModel_sel   = (DefaultListModel)list_category_sel.getModel();
+        
+        // 初始 "combox"
         Set books = bookDao.queryAll(Book.class);
         for(Object book : books) {
             combo_book.addItem((Book)book);
