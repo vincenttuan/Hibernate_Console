@@ -187,6 +187,7 @@ public class BookJFrame extends javax.swing.JFrame {
             };
             dm.addRow(rowData);
         }
+        jTable1.setRowHeight(30);
     }//GEN-LAST:event_read_btnActionPerformed
 
     private void create_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_btnActionPerformed
