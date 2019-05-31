@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <!-- 一. book.orm -->
     <class name="book.orm.model.Book" table="book">
         <id column="b_id" name="id" type="int">
             <generator class="native"/>
@@ -21,4 +22,44 @@
         <property column="c_id" name="c_id" type="int"/>
         <property column="b_id" name="b_id" type="int"/>
     </class>
+    
+    <!-- 二. stock.orm -->
+    <class name="stock.orm.model.Fund" table="fund">
+        <id name="fundId" type="java.lang.Integer">
+            <column name="FUND_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="10" not-null="true" />
+        </property>
+        <property name="desc" type="string">
+            <column name="[DESC]" not-null="true" />
+        </property>
+        <!-- many-to-many -->
+        <set name="stocks" table="stock_fund" 
+             inverse="false" cascade="all" lazy="true" fetch="join">
+            <key>
+                <column name="FUND_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="stock.orm.model.Stock">
+                <column name="STOCK_ID" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+    
+    <class name="stock.orm.model.Stock" table="stock">
+        <id name="stockId" type="java.lang.Integer">
+            <column name="STOCK_ID" />
+            <generator class="native" />
+        </id>
+        <property name="stockCode" type="string">
+            <column name="STOCK_CODE" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="stockName" type="string">
+            <column name="STOCK_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        
+    </class>
+    
+    
 </hibernate-mapping>
