@@ -37,7 +37,7 @@
         </property>
         <!-- many-to-many -->
         <set name="stocks" table="stock_fund" 
-             inverse="false" cascade="all" lazy="true" fetch="join">
+             inverse="false" cascade="all" lazy="true" fetch="select">
             <key>
                 <column name="FUND_ID" not-null="true" />
             </key>
@@ -45,6 +45,7 @@
                 <column name="STOCK_ID" not-null="true" />
             </many-to-many>
         </set>
+        
     </class>
     
     <class name="stock.orm.model.Stock" table="stock">

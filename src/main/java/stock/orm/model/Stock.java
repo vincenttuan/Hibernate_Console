@@ -10,6 +10,13 @@ public class Stock implements java.io.Serializable {
         
     }
 
+    public Stock(String stockCode, String stockName) {
+        this.stockCode = stockCode;
+        this.stockName = stockName;
+    }
+    
+    
+
     public Integer getStockId() {
         return stockId;
     }
@@ -32,6 +39,11 @@ public class Stock implements java.io.Serializable {
 
     public void setStockName(String stockName) {
         this.stockName = stockName;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" + "stockId=" + stockId + ", stockCode=" + stockCode + ", stockName=" + stockName + '}';
     }
     
     
