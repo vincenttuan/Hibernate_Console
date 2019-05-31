@@ -1,10 +1,14 @@
 package stock.orm.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Stock implements java.io.Serializable {
 
     private Integer stockId;
     private String stockCode;
     private String stockName;
+    private Set<Fund> funds = new HashSet<>();
     
     public Stock() {
         
@@ -39,6 +43,14 @@ public class Stock implements java.io.Serializable {
 
     public void setStockName(String stockName) {
         this.stockName = stockName;
+    }
+
+    public Set<Fund> getFunds() {
+        return funds;
+    }
+
+    public void setFunds(Set<Fund> funds) {
+        this.funds = funds;
     }
 
     @Override
