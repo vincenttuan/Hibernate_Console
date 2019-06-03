@@ -1,6 +1,7 @@
 package sales.orm.test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,10 +12,41 @@ import sales.orm.model.Sales;
 public class 一對多 {
 
     public static void main(String[] args) {
-        create();
-
+        //create();
+        //readSales();
+        readCustomer();
     }
-
+    
+    public static void readSales() {
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        session.beginTransaction();
+        
+        List<Sales> saleses = session.createQuery("from sales.orm.model.Sales").list();
+        for(Sales sales : saleses) {
+            System.out.print(sales.getName() + "->");
+            for(Customer customer : sales.getCustomers()) {
+                System.out.print(customer.getName() + ", ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void readCustomer() {
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        session.beginTransaction();
+        
+        List<Customer> customers = session.createQuery("from sales.orm.model.Customer").list();
+        for(Customer customer : customers) {
+            System.out.print(customer.getName() + "->");
+            Sales sales = session.get(Sales.class, customer.getEmNo());
+            System.out.println(sales.getName());
+        }
+    }
+    
     public static void create() {
         Sales s1 = new Sales("A038", "黃藥師");
         Sales s2 = new Sales("C549", "江湖郎中");

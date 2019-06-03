@@ -76,9 +76,8 @@
         <id name="id" column="id"> 
             <generator class="native"/> 
         </id> 
-        <property name="address" column="address" />         
+        <property name="address" column="address" />   
     </class> 
-    
     <class name="room.orm.model.Tenant" table="tenant"> 
         <id name="id" column="id"> 
             <generator class="native"/> 
@@ -91,4 +90,32 @@
                      outer-join="true"/>  
     </class>
     
+    <!-- 四. room.orm One-to-Many -->
+    <class name="sales.orm.model.Sales" table="SALES">
+        <id name="emNo" type="java.lang.String">
+            <column name="EMNO" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+        <set name="customers" table="CUSTOMER" inverse="true" cascade="all">
+            <key column="EMNO" not-null="true" />
+            <one-to-many class="sales.orm.model.Customer" />
+        </set>
+    </class> 
+    
+    <class name="sales.orm.model.Customer" table="CUSTOMER">
+        <id name="cid" type="java.lang.String">
+            <column name="CID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="emNo" type="java.lang.String">
+            <column name="EMNO" />
+        </property>
+    </class>
 </hibernate-mapping>
