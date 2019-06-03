@@ -36,9 +36,29 @@ public class 多對一 {
             }
         }
         
-        session.getTransaction().commit();
     }
+    
+    public static void readRoom_Java8() {
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        session.beginTransaction();
 
+        List<Room> list = session.createQuery("from room.orm.model.Room").list();
+        list.stream().forEach(room -> {
+            System.out.print(room.getAddress() + " -> ");
+            String hql = "from room.orm.model.Tenant where room_id=:room_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("room_id", room.getId());
+            List<Tenant> tenants = query.list();
+            tenants.stream().forEach(tenant -> {
+                System.out.print(tenant.getName() + ",");
+            });
+            System.out.println();
+        });
+        
+    }
+    
     public static void readTenant() {
         Configuration cfg = new Configuration().configure();
         SessionFactory sf = cfg.buildSessionFactory();
@@ -50,9 +70,11 @@ public class 多對一 {
             System.out.println(tenant.getName() + " --> " + tenant.getRoom().getAddress());
         }
         
-        session.getTransaction().commit();
     }
+    
+    
 
+    
     public static void create() {
         Room room1 = new Room();
         room1.setAddress("A01");
