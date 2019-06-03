@@ -9,10 +9,18 @@ import room.orm.model.Tenant;
 public class 多對一 {
 
     public static void main(String[] args) {
+        //create();
+        readRoom(); // 將每一房中有哪些個人分別印出 Ex: A01 -> Mary, Tom
+        readTenant(); // 將每人分別在哪一房印出 Ex: Mary -> A01
+    }
 
-        create();
+    public static void readRoom() {
 
     }
+    
+     public static void readTenant() {
+     
+     }
 
     public static void create() {
         Room room1 = new Room();
