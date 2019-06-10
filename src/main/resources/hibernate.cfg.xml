@@ -19,5 +19,6 @@
     <property name="show_sql">true</property>
     <!-- 8.加載映射 -->
     <mapping resource="./model.hbm.xml"/>
+    <mapping resource="./model.hbm_stock.xml"/>
   </session-factory>
 </hibernate-configuration>
