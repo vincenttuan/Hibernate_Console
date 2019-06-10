@@ -62,7 +62,7 @@
     
     <!-- 基金淨值 -->
     <class name="stock.orm.model.FundNet" table="fundnet"> 
-        <id name="netId" column="id"> 
+        <id name="netId" column="netId"> 
             <generator class="foreign"> 
                 <param name="property">fund</param>
             </generator>
