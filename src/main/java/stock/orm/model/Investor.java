@@ -5,7 +5,8 @@ public class Investor {
     private String name;
     private Double units;
     private Integer netValue;
-
+    private Fund fund;
+    
     public Integer getInvestorId() {
         return investorId;
     }
@@ -36,6 +37,14 @@ public class Investor {
 
     public void setNetValue(Integer netValue) {
         this.netValue = netValue;
+    }
+
+    public Fund getFund() {
+        return fund;
+    }
+
+    public void setFund(Fund fund) {
+        this.fund = fund;
     }
     
 }
