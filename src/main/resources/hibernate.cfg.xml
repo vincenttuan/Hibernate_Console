@@ -18,7 +18,7 @@
     <!-- 7.顯示hibernate在運行時候執行的sql語句 -->
     <property name="show_sql">true</property>
     <!-- 8.加載映射 -->
-    <mapping resource="./model.hbm.xml"/>
+    <!--<mapping resource="./model.hbm.xml"/>-->
     <mapping resource="./model.hbm_stock.xml"/>
   </session-factory>
 </hibernate-configuration>

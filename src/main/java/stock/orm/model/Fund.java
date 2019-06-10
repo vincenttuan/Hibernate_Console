@@ -9,6 +9,8 @@ public class Fund {
     private String name;
     private String desc;
     private Set<Stock> stocks = new HashSet<>();
+    private FundNet fundNet;
+    private Set<Trader> traders = new HashSet();
     
     public Fund() {
     }
@@ -50,9 +52,27 @@ public class Fund {
         this.stocks = stocks;
     }
 
+    public FundNet getFundNet() {
+        return fundNet;
+    }
+
+    public void setFundNet(FundNet fundNet) {
+        this.fundNet = fundNet;
+    }
+
+    public Set<Trader> getTraders() {
+        return traders;
+    }
+
+    public void setTraders(Set<Trader> traders) {
+        this.traders = traders;
+    }
+
     @Override
     public String toString() {
-        return "Fund{" + "fundId=" + fundId + ", name=" + name + ", desc=" + desc + ", stocks=" + stocks + '}';
+        return "Fund{" + "fundId=" + fundId + ", name=" + name + ", desc=" + desc + ", stocks=" + stocks + ", fundNet=" + fundNet + ", traders=" + traders + '}';
     }
+    
+    
 
 }
